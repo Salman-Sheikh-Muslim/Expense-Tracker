@@ -7,17 +7,23 @@ import ExpenseList from "./Expense-tracker.tsx/ExpenseList";
 import ExpenseFilter from "./Expense-tracker.tsx/ExpenseFilter";
 import categories from "./Expense-tracker.tsx/categories";
 import ExpenseForm from "./Expense-tracker.tsx/ExpenseForm";
+import { Expense } from "./Expense-tracker.tsx/ExpenseList";
+
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const [expenses, setExpenses] = useState([
-    {
-      id: 1,
-      description: "aaa",
-      amount: 10,
-      category: "Utilities",
-    },
-  ]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+
+  // const [expenses, setExpenses] = useState([
+  //   {
+  //     id: 1,
+  //     description: "aaa",
+  //     amount: 10,
+  //     category: "Utilities",
+
+  //   },
+  // ]);
+
   // const expenses = [
   //   {
   //     id: 1,
@@ -47,7 +53,7 @@ function App() {
             ])
           }
         ></ExpenseForm>
-        <div className="mb-3">
+        <div className="mt-3 mb-3">
           <ExpenseFilter
             onSelectCategory={(category) => setSelectedCategory(category)}
           ></ExpenseFilter>
@@ -56,7 +62,7 @@ function App() {
           expenses={visibleExpenses}
           onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
         ></ExpenseList>
-        <FormItem></FormItem>
+        {/* <FormItem></FormItem> */}
       </div>
     </>
   );

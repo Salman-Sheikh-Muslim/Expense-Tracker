@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Expense {
+export interface Expense {
   id: number;
   description: string;
   amount: number;
@@ -19,7 +19,7 @@ const ExpenseList = ({ expenses, onDelete }: Props) => {
     <table className="table table-bordered">
       <thead>
         <tr>
-          <th>Descriptiomn</th>
+          <th>Description</th>
           <th>Amount</th>
           <th>Category</th>
           <th></th>
