@@ -57,10 +57,7 @@ function App() {
             onSelectCategory={(category) => setSelectedCategory(category)}
           ></ExpenseFilter>
         </div>
-        <ExpenseList
-          expenses={visibleExpenses}
-          onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
-        ></ExpenseList>
+        <ExpenseList></ExpenseList>
       </div>
     </>
   );

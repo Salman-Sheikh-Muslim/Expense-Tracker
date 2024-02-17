@@ -38,8 +38,8 @@ function HomePage() {
           ></ExpenseFilter>
         </div>
         <ExpenseList
-          expenses={visibleExpenses}
-          onDelete={(id) => onDelete(id)}
+        //   expenses={visibleExpenses}
+        //   onDelete={(id) => onDelete(id)}
         ></ExpenseList>
       </div>
     </>

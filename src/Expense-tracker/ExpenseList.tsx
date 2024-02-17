@@ -1,4 +1,5 @@
 import React from "react";
+import useExpenseStore from "../ItemsStore";
 
 export interface Expense {
   id: number;
@@ -12,7 +13,8 @@ interface Props {
   onDelete: (id: number) => void;
 }
 
-const ExpenseList = ({ expenses, onDelete }: Props) => {
+const ExpenseList = () => {
+  const { expenses, onDelete } = useExpenseStore();
   if (expenses.length === 0) return null;
 
   return (
