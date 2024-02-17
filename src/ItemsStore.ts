@@ -10,6 +10,7 @@ interface Expense {
 interface ExpenseStore {
   expenses: Expense[];
   addExpense: (expense: Omit<Expense, 'id'>) => void;
+  onDelete: (id: number) => void;
 }
 
 const useExpenseStore = create<ExpenseStore>((set) => ({
@@ -23,6 +24,9 @@ const useExpenseStore = create<ExpenseStore>((set) => ({
           id: state.expenses.length + 1,
         },
       ],
+    })),
+    onDelete: (id) => set((state) => ({
+      expenses: state.expenses.filter((e) => e.id !== id),
     })),
 }));
 
