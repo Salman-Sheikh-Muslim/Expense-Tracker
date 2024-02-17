@@ -4,6 +4,7 @@ import ExpenseForm from "../Expense-tracker/ExpenseForm";
 import ExpenseList, { Expense } from "../Expense-tracker/ExpenseList";
 import { Link } from "react-router-dom";
 import useExpenseStore from "../ItemsStore";
+import { Button } from "@chakra-ui/react";
 
 function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -30,8 +31,10 @@ function HomePage() {
               },
             ])
           }
-        ></ExpenseForm> */}
-        <Link to="/new-item">Add</Link>
+        ></ExpenseForm> */}{" "}
+        <Link to="/new-item">
+          <Button color="blue">Add</Button>
+        </Link>
         <div className="mt-3 mb-3">
           <ExpenseFilter
             onSelectCategory={(category) => setSelectedCategory(category)}
