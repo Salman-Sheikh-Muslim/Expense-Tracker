@@ -1,36 +1,12 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-import List from "./assets/Components/Table-Items";
-import ExpenseList from "./Expense-tracker/ExpenseList";
-import ExpenseFilter from "./Expense-tracker/ExpenseFilter";
-import categories from "./Expense-tracker/categories";
-import ExpenseForm from "./Expense-tracker/ExpenseForm";
-import { Expense } from "./Expense-tracker/ExpenseList";
+import ExpenseFilter from "../Expense-tracker/ExpenseFilter";
+import ExpenseForm from "../Expense-tracker/ExpenseForm";
+import ExpenseList, { Expense } from "../Expense-tracker/ExpenseList";
 
-function App() {
+function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const [expenses, setExpenses] = useState<Expense[]>([]);
-
-  // const [expenses, setExpenses] = useState([
-  //   {
-  //     id: 1,
-  //     description: "aaa",
-  //     amount: 10,
-  //     category: "Utilities",
-
-  //   },
-  // ]);
-
-  // const expenses = [
-  //   {
-  //     id: 1,
-  //     description: "aaa",
-  //     amount: 10,
-  //     category: "Utilities",
-  //   },
-  // ];
 
   const visibleExpenses = selectedCategory
     ? expenses.filter((e) => e.category === selectedCategory)
@@ -66,4 +42,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;
