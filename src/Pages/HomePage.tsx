@@ -2,11 +2,14 @@ import { useState } from "react";
 import ExpenseFilter from "../Expense-tracker/ExpenseFilter";
 import ExpenseForm from "../Expense-tracker/ExpenseForm";
 import ExpenseList, { Expense } from "../Expense-tracker/ExpenseList";
+import { Link } from "react-router-dom";
+import useExpenseStore from "../ItemsStore";
 
 function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+  // const [expenses, setExpenses] = useState<Expense[]>([]);
+  const { expenses, addExpense } = useExpenseStore();
 
   const visibleExpenses = selectedCategory
     ? expenses.filter((e) => e.category === selectedCategory)
@@ -14,7 +17,7 @@ function HomePage() {
   return (
     <>
       <div>
-        <ExpenseForm
+        {/* <ExpenseForm
           onSubmit={(expense) =>
             setExpenses([
               ...expenses,
@@ -27,7 +30,8 @@ function HomePage() {
               },
             ])
           }
-        ></ExpenseForm>
+        ></ExpenseForm> */}
+        <Link to="/new-item">Add</Link>
         <div className="mt-3 mb-3">
           <ExpenseFilter
             onSelectCategory={(category) => setSelectedCategory(category)}
@@ -35,7 +39,8 @@ function HomePage() {
         </div>
         <ExpenseList
           expenses={visibleExpenses}
-          onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
+          //   setExpenses(expenses.filter((e) => e.id !== id))
+          onDelete={(id) => {}}
         ></ExpenseList>
       </div>
     </>
