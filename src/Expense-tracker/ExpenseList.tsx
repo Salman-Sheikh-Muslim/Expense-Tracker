@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import useExpenseStore from "../ItemsStore";
 import categories from "./categories";
-
+import { z } from "zod";
+import { schema } from "./ExpenseForm";
 export interface Expense {
   id: number;
   description: string;
   amount: number;
   category: string;
 }
+
+type FormData = z.infer<typeof schema>;
 
 interface Props {
   expenses: Expense[];
@@ -29,14 +32,30 @@ const ExpenseList = ({ expenses }: Props) => {
     setEditExpense(expenses[index]);
   };
 
-  const handleUpdateExpense = () => {
-    // Logic to update expense
-    console.log("Updating expense:", editExpense);
-    updateExpense(editExpense.id, editExpense);
+  // const handleUpdateExpense = () => {
+  //   // Logic to update expense
+  //   console.log("Updating expense:", editExpense);
+  //   updateExpense(editExpense.id, editExpense);
 
-    // Reset edit state
-    setEditIndex(null);
-    setEditExpense({ id: -1, description: "", amount: 0, category: "" });
+  //   // Reset edit state
+  //   setEditIndex(null);
+  //   setEditExpense({ id: -1, description: "", amount: 0, category: "" });
+  // };
+
+  const handleUpdateExpense = () => {
+    // Validate using the Zod schema
+    try {
+      schema.parse(editExpense);
+      // If validation passes, update the expense
+      updateExpense(editExpense.id, editExpense);
+      // Reset edit state
+      setEditIndex(null);
+      setEditExpense({ id: -1, description: "", amount: 0, category: "" });
+    } catch (error) {
+      // Handle validation errors
+      console.error(error);
+      // Display error messages or handle validation errors as needed
+    }
   };
 
   const handleCancelEdit = () => {

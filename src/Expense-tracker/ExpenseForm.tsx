@@ -4,7 +4,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import categories from "./categories";
 
-const schema = z.object({
+export const schema = z.object({
   description: z
     .string()
     .min(3, { message: "Name field should have atleast 3 charachters" })
