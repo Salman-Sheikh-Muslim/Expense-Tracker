@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useExpenseStore from "../ItemsStore";
+import categories from "./categories";
 
 export interface Expense {
   id: number;
@@ -91,8 +92,7 @@ const ExpenseList = ({ expenses }: Props) => {
             </td>
             <td>
               {editIndex === index ? (
-                <input
-                  type="text"
+                <select
                   value={editExpense.category}
                   onChange={(e) =>
                     setEditExpense({
@@ -100,7 +100,13 @@ const ExpenseList = ({ expenses }: Props) => {
                       category: e.target.value,
                     })
                   }
-                />
+                >
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
               ) : (
                 expense.category
               )}
@@ -109,18 +115,21 @@ const ExpenseList = ({ expenses }: Props) => {
               {editIndex === index ? (
                 <>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary me-3"
                     onClick={handleUpdateExpense}
                   >
                     Save
                   </button>
-                  <button className="btn btn-danger" onClick={handleCancelEdit}>
+                  <button
+                    className="btn btn-danger me-3"
+                    onClick={handleCancelEdit}
+                  >
                     Cancel
                   </button>
                 </>
               ) : (
                 <button
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-primary me-3"
                   onClick={() => handleOnEdit(index)}
                 >
                   Edit
