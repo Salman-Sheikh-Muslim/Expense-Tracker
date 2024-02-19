@@ -57,7 +57,7 @@ function App() {
             onSelectCategory={(category) => setSelectedCategory(category)}
           ></ExpenseFilter>
         </div>
-        <ExpenseList></ExpenseList>
+        {/* <ExpenseList></ExpenseList> */}
       </div>
     </>
   );
