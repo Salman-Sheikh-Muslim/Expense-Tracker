@@ -10,7 +10,7 @@ function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   // const [expenses, setExpenses] = useState<Expense[]>([]);
-  const { expenses, onDelete } = useExpenseStore();
+  const { expenses } = useExpenseStore();
 
   const visibleExpenses = selectedCategory
     ? expenses.filter((e) => e.category === selectedCategory)
@@ -41,8 +41,8 @@ function HomePage() {
           ></ExpenseFilter>
         </div>
         <ExpenseList
-        //   expenses={visibleExpenses}
-        //   onDelete={(id) => onDelete(id)}
+          expenses={visibleExpenses}
+          //   onDelete={(id) => onDelete(id)}
         ></ExpenseList>
       </div>
     </>
